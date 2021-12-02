@@ -17,34 +17,17 @@ public class Boidhavior : MonoBehaviour
     public float AlignmentSmoothVal = .01f;
     public GameObject FollowObject;
     bool activateBoids = true;
-    bool isFrozen = true;
-    public GameObject MainMenu;
+    public bool isFrozen = true;
    
     // Start is called before the first frame update
     void Start()
-    {
-        MainMenu.SetActive(true);
+    {      
         objects = FindObjectsOfType<Boid>(); 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (isFrozen == true)
-            {
-                objects = FindObjectsOfType<Boid>();
-                for (int i = 0; i < objects.Length; i++)
-                {
-                    Rigidbody2D rb = objects[i].GetComponent<Rigidbody2D>();
-                    rb.AddRelativeForce(Vector2.up * 150);
-                }
-            }
-            isFrozen = false;
-            MainMenu.SetActive(false);
-            
-        }
         if (activateBoids == true && isFrozen == false)
         {
             objects = FindObjectsOfType<Boid>();
@@ -67,6 +50,19 @@ public class Boidhavior : MonoBehaviour
 
     }
 
+    public void UnfreezeBoids()
+    {
+        if (isFrozen == true)
+        {
+            objects = FindObjectsOfType<Boid>();
+            for (int i = 0; i < objects.Length; i++)
+            {
+                Rigidbody2D rb = objects[i].GetComponent<Rigidbody2D>();
+                rb.AddRelativeForce(Vector2.up * 150);
+            }
+            isFrozen = false;
+        }
+    }
     Vector3 Cohesion(GameObject boid)
     {
         int count = 0;

@@ -27,27 +27,7 @@ public class Movement : MonoBehaviour
     {
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            float mouseX = worldPosition.x;
-            float mouseY = worldPosition.y;
-            Instantiate(Boid, new Vector3(mouseX, mouseY, 0), new Quaternion());
-        }
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
-            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            float mouseX = worldPosition.x;
-            float mouseY = worldPosition.y;
-            Instantiate(Avoid, new Vector3(mouseX, mouseY, 0), new Quaternion());
-        }
-        if (Input.mouseScrollDelta != new Vector2(0,0))
-        {
-            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            float mouseX = worldPosition.x;
-            float mouseY = worldPosition.y;
-            Instantiate(Boid, new Vector3(mouseX, mouseY, 0), new Quaternion());
-        }
+        
         movDir = new Vector2(moveX, moveY);
     }
 

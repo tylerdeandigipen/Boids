@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1755529597763124729}
   - component: {fileID: 1755529597763124728}
+  - component: {fileID: 5067547828960672331}
   m_Layer: 0
   m_Name: Boid Leader
   m_TagString: Untagged
@@ -48,8 +49,24 @@ MonoBehaviour:
   SeparationWeight: 1
   FollowWeight: 0
   AvoidanceWeight: 3
-  maxSpeed: 25
+  maxSpeed: 15
   FriendRange: 5
   AvoidRange: 8
   AlignmentSmoothVal: 0.01
   FollowObject: {fileID: 0}
+  isFrozen: 1
+--- !u!114 &5067547828960672331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1755529597763124731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef9385a33fe41534a95c91906764f750, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MainMenu: {fileID: 0}
+  Boid: {fileID: 6552284299318456380, guid: e191e27410047a4458dca913cb890777, type: 3}
+  Avoid: {fileID: 8105662350854249346, guid: 7ae3a7cb2a0fd8e429f3f3623ffd6350, type: 3}
