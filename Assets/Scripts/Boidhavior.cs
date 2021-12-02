@@ -17,24 +17,35 @@ public class Boidhavior : MonoBehaviour
     public float AlignmentSmoothVal = .01f;
     public GameObject FollowObject;
     bool activateBoids = true;
+    bool isFrozen = true;
+    public GameObject MainMenu;
    
     // Start is called before the first frame update
     void Start()
     {
-       
-        objects = FindObjectsOfType<Boid>();
-        for (int i = 0; i < objects.Length; i++)
-        {
-            Rigidbody2D rb = objects[i].GetComponent<Rigidbody2D>();
-            rb.AddRelativeForce(Vector2.up * 150);
-        }
-       
+        MainMenu.SetActive(true);
+        objects = FindObjectsOfType<Boid>(); 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (activateBoids == true)
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (isFrozen == true)
+            {
+                objects = FindObjectsOfType<Boid>();
+                for (int i = 0; i < objects.Length; i++)
+                {
+                    Rigidbody2D rb = objects[i].GetComponent<Rigidbody2D>();
+                    rb.AddRelativeForce(Vector2.up * 150);
+                }
+            }
+            isFrozen = false;
+            MainMenu.SetActive(false);
+            
+        }
+        if (activateBoids == true && isFrozen == false)
         {
             objects = FindObjectsOfType<Boid>();
             objectsToAvoid = FindObjectsOfType<Avoid>();
@@ -53,6 +64,7 @@ public class Boidhavior : MonoBehaviour
         }
         else
             activateBoids = true;
+
     }
 
     Vector3 Cohesion(GameObject boid)
@@ -145,8 +157,8 @@ public class Boidhavior : MonoBehaviour
         float degToRot = Mathf.Atan2(rb.velocity.y, rb.velocity.x);
         degToRot = degToRot * Mathf.Rad2Deg - 90;
         boid.transform.eulerAngles = new Vector3(0, 0, degToRot);
-        boidScript.PreviousBoidSpeed = rb.velocity.normalized;
-        //Debug.DrawRay(boid.transform.position, (rb.velocity.normalized), Color.green);
+        boidScript.PreviousBoidSpeed = LerpedVelocity;
+       // boidScript.PreviousBoidSpeed = rb.velocity.normalized;        
     }
 
 

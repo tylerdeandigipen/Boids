@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4485470432359090237}
   - component: {fileID: 8255467818444251459}
   - component: {fileID: 2965137534015852881}
-  - component: {fileID: 1713715702480415870}
   - component: {fileID: 5864924180708383915}
   - component: {fileID: 6063341563423922600}
   - component: {fileID: 1676520484802440964}
@@ -100,28 +99,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PreviousBoidSpeed: {x: 0, y: 0, z: 0}
---- !u!114 &1713715702480415870
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6552284299318456380}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b975727d6bf66e47a7dd0dafe3d2d78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CohesionWeight: 1
-  AlignmentWeight: 1
-  SeparationWeight: 1
-  FollowWeight: 0
-  AvoidanceWeight: 3
-  maxSpeed: 25
-  FriendRange: 5
-  AvoidRange: 8
-  AlignmentSmoothVal: 0.01
-  FollowObject: {fileID: 0}
 --- !u!50 &5864924180708383915
 Rigidbody2D:
   serializedVersion: 4
