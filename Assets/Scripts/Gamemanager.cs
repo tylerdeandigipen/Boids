@@ -42,8 +42,8 @@ public class Gamemanager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            BoidLeader.UnfreezeBoids();
-            MainMenu.SetActive(false);
+           // BoidLeader.UnfreezeBoids();
+            //MainMenu.SetActive(false);
         }
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
@@ -101,6 +101,12 @@ public class Gamemanager : MonoBehaviour
     public void startSpawns()
     {
         canSpawn = true;
+    }
+
+    public void startSim()
+    {
+        BoidLeader.UnfreezeBoids();
+        MainMenu.SetActive(false);
     }
 }
 
