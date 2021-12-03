@@ -8,7 +8,8 @@ public class Gamemanager : MonoBehaviour
     public GameObject MainMenu;
     Boidhavior BoidLeader;
     public GameObject Boid;
-    public GameObject Avoid;    
+    public GameObject Avoid;
+    public GameObject Attract;
     GameObject CurrentSpawnable;
     bool canSpawn = true;
     // Start is called before the first frame update
@@ -33,6 +34,10 @@ public class Gamemanager : MonoBehaviour
     {
         CurrentSpawnable = Avoid;
     }
+    public void SetSpawnAttract(string useless)
+    {
+        CurrentSpawnable = Attract;
+    }
     void ProcessInputs()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -47,6 +52,14 @@ public class Gamemanager : MonoBehaviour
                 Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 float mouseX = worldPosition.x;
                 float mouseY = worldPosition.y;
+                if (CurrentSpawnable == Attract)
+                {
+                    Movement AttractAble = FindObjectOfType<Movement>();
+                    if (AttractAble != null)
+                    {
+                        Destroy(AttractAble.gameObject);
+                    }
+                }
                 Instantiate(CurrentSpawnable, new Vector3(mouseX, mouseY, 0), new Quaternion());
             }
             else

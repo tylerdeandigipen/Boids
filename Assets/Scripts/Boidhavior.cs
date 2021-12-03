@@ -32,6 +32,14 @@ public class Boidhavior : MonoBehaviour
         {
             objects = FindObjectsOfType<Boid>();
             objectsToAvoid = FindObjectsOfType<Avoid>();
+            if (FollowObject == null)
+            {
+                Movement FollowObjectScript = FindObjectOfType<Movement>();
+                if (FollowObjectScript != null)
+                {
+                    FollowObject = FollowObjectScript.gameObject;
+                }
+            }
             for (int i = 0; i < objects.Length; i++)
             {
                 Rigidbody2D rb = objects[i].GetComponent<Rigidbody2D>();
@@ -140,7 +148,13 @@ public class Boidhavior : MonoBehaviour
         Rigidbody2D rb = boid.GetComponent<Rigidbody2D>();
         Boid boidScript = boid.GetComponent<Boid>();
         //new vector3 in line below should be previous boid speed but that dont work
-        Vector3 followVector = FollowObject.transform.position - boid.transform.position;
+        Vector3 followVector;
+        if (FollowObject != null)
+        {
+            followVector = FollowObject.transform.position - boid.transform.position;
+        }
+        else
+            followVector = new Vector3(0, 0, 0);
         Vector3 BoidVelocity = boidScript.PreviousBoidSpeed + (Cohesion * CohesionWeight) + (Alignment * AlignmentWeight) + (Separation * SeparationWeight) + (followVector.normalized * FollowWeight) + (Avoidance * AvoidanceWeight);
         float speed = rb.velocity.magnitude;
         Vector2 LerpedVelocity = Vector2.Lerp(rb.velocity.normalized, BoidVelocity, AlignmentSmoothVal) * speed;
