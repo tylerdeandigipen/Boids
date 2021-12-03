@@ -74,6 +74,26 @@ public class Gamemanager : MonoBehaviour
             Instantiate(Boid, new Vector3(mouseX, mouseY, 0), new Quaternion());
         }
     }
+    public void resetSimulation()
+    {
+        Boid[] objects;
+        Avoid[] objectsToAvoid;
+        objects = FindObjectsOfType<Boid>();
+        objectsToAvoid = FindObjectsOfType<Avoid>();
+        Movement FollowObjectScript = FindObjectOfType<Movement>();   
+        if (FollowObjectScript != null)
+        {
+            Destroy(FollowObjectScript.gameObject);
+        }
+        for (int i = 0; i < objects.Length; i++)
+        {
+            Destroy(objects[i].gameObject);
+        }
+        for (int i = 0; i < objectsToAvoid.Length; i++)
+        {
+            Destroy(objectsToAvoid[i].gameObject);
+        }
+    }
     public void stopSpawns()
     {
         canSpawn = false;
