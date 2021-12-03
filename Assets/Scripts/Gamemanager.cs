@@ -10,6 +10,7 @@ public class Gamemanager : MonoBehaviour
     public GameObject Boid;
     public GameObject Avoid;    
     GameObject CurrentSpawnable;
+    bool canSpawn = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,13 +40,19 @@ public class Gamemanager : MonoBehaviour
             BoidLeader.UnfreezeBoids();
             MainMenu.SetActive(false);
         }
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyUp(KeyCode.Mouse0))
         {
-            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            float mouseX = worldPosition.x;
-            float mouseY = worldPosition.y;
-            Instantiate(CurrentSpawnable, new Vector3(mouseX, mouseY, 0), new Quaternion());
-        }    
+            if (canSpawn == true)
+            {
+                Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                float mouseX = worldPosition.x;
+                float mouseY = worldPosition.y;
+                Instantiate(CurrentSpawnable, new Vector3(mouseX, mouseY, 0), new Quaternion());
+            }
+            else
+                canSpawn = true;
+        }
+  
         if (Input.mouseScrollDelta != new Vector2(0, 0))
         {
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -54,4 +61,14 @@ public class Gamemanager : MonoBehaviour
             Instantiate(Boid, new Vector3(mouseX, mouseY, 0), new Quaternion());
         }
     }
+    public void stopSpawns()
+    {
+        canSpawn = false;
+    }
+    public void startSpawns()
+    {
+        canSpawn = true;
+    }
 }
+
+
