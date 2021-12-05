@@ -7,18 +7,23 @@ public class Boidhavior : MonoBehaviour
     public float CohesionWeight = 1;
     public float AlignmentWeight = 1;
     public float SeparationWeight = 1;
-    public float FollowWeight = 1;
+    public float FollowWeight = .5f;
     public float AvoidanceWeight = 1;
-    public float maxSpeed = 1000;
+    public float PreviousSpeedWeight = 1;
+    public float maxSpeed = 15;
+    public float minSpeed = 5;
     public float FriendRange = 5;
+    public float SeparateRange = 5;
     public float AvoidRange = 5;
     Boid[] objects;
     Avoid[] objectsToAvoid;    
     public float AlignmentSmoothVal = .01f;
-    public GameObject FollowObject;
-    bool activateBoids = true;
+    public int TickRate;
+    public GameObject FollowObject; 
     public bool isFrozen = true;
-   
+    int frames = 1;
+    public int AmmountOfBoids;
+
     // Start is called before the first frame update
     void Start()
     {      
@@ -26,12 +31,13 @@ public class Boidhavior : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if (activateBoids == true && isFrozen == false)
+        if (frames % (TickRate + 1) == 0 && isFrozen == false)
         {
             objects = FindObjectsOfType<Boid>();
             objectsToAvoid = FindObjectsOfType<Avoid>();
+            AmmountOfBoids = objects.Length;
             if (FollowObject == null)
             {
                 Movement FollowObjectScript = FindObjectOfType<Movement>();
@@ -51,10 +57,10 @@ public class Boidhavior : MonoBehaviour
                 SetDirectionOfBoid(CohesionVector, AlignmentVector, SeparationVector, AvoidanceVector, objects[i].gameObject);
 
             }
-            activateBoids = false;
+            frames = 1;
         }
         else
-            activateBoids = true;
+            frames++;
 
     }
 
@@ -100,7 +106,7 @@ public class Boidhavior : MonoBehaviour
         Vector3 SeparatePos = new Vector3(0, 0, 0);
         for (int i = 0; i < objects.Length; i++)
         {
-            if (Vector2.Distance(objects[i].gameObject.transform.position, boid.transform.position) < FriendRange && boid.transform.position != objects[i].gameObject.transform.position)
+            if (Vector2.Distance(objects[i].gameObject.transform.position, boid.transform.position) < SeparateRange && boid.transform.position != objects[i].gameObject.transform.position)
             {
                 SeparatePos += (boid.transform.position - objects[i].gameObject.transform.position) / (boid.transform.position - objects[i].gameObject.transform.position).magnitude;                
             }
@@ -146,8 +152,7 @@ public class Boidhavior : MonoBehaviour
     void SetDirectionOfBoid(Vector3 Cohesion, Vector3 Alignment, Vector3 Separation, Vector3 Avoidance, GameObject boid)
     {
         Rigidbody2D rb = boid.GetComponent<Rigidbody2D>();
-        Boid boidScript = boid.GetComponent<Boid>();
-        //new vector3 in line below should be previous boid speed but that dont work
+        Boid boidScript = boid.GetComponent<Boid>();      
         Vector3 followVector;
         if (FollowObject != null)
         {
@@ -155,12 +160,16 @@ public class Boidhavior : MonoBehaviour
         }
         else
             followVector = new Vector3(0, 0, 0);
-        Vector3 BoidVelocity = boidScript.PreviousBoidSpeed + (Cohesion * CohesionWeight) + (Alignment * AlignmentWeight) + (Separation * SeparationWeight) + (followVector.normalized * FollowWeight) + (Avoidance * AvoidanceWeight);
+        Vector3 BoidVelocity = (boidScript.PreviousBoidSpeed * PreviousSpeedWeight) + (Cohesion * CohesionWeight) + (Alignment * AlignmentWeight) + (Separation * SeparationWeight) + (followVector.normalized * FollowWeight) + (Avoidance * AvoidanceWeight);
         float speed = rb.velocity.magnitude;
         Vector2 LerpedVelocity = Vector2.Lerp(rb.velocity.normalized, BoidVelocity, AlignmentSmoothVal) * speed;
         if (LerpedVelocity.magnitude > maxSpeed)
         {
             LerpedVelocity = (LerpedVelocity / LerpedVelocity.magnitude) * maxSpeed;            
+        }
+        if (LerpedVelocity.magnitude < minSpeed && LerpedVelocity.magnitude != 0)
+        {
+            LerpedVelocity = (LerpedVelocity / LerpedVelocity.magnitude) * minSpeed;
         }
         //rb.velocity = BoidVelocity;    
         rb.velocity = LerpedVelocity;
