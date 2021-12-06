@@ -77,6 +77,13 @@ public class Boidhavior : MonoBehaviour
             isFrozen = false;
         }
     }
+    public void FreezeBoids()
+    {
+        if (isFrozen == false)
+        {            
+            isFrozen = true;
+        }
+    }
     Vector3 Cohesion(GameObject boid)
     {
         int count = 0;

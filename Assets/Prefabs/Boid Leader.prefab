@@ -47,15 +47,15 @@ MonoBehaviour:
   CohesionWeight: 1
   AlignmentWeight: 1
   SeparationWeight: 1
-  FollowWeight: 0.4
-  AvoidanceWeight: 0.75
+  FollowWeight: 1
+  AvoidanceWeight: 2
   PreviousSpeedWeight: 0.8
   maxSpeed: 15
-  minSpeed: 10
+  minSpeed: 12.5
   FriendRange: 5
   SeparateRange: 5
-  AvoidRange: 7
-  AlignmentSmoothVal: 0.05
+  AvoidRange: 10
+  AlignmentSmoothVal: 0.03
   TickRate: 0
   FollowObject: {fileID: 0}
   isFrozen: 1
@@ -72,7 +72,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef9385a33fe41534a95c91906764f750, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Canvas: {fileID: 0}
   MainMenu: {fileID: 0}
   Boid: {fileID: 6552284299318456380, guid: e191e27410047a4458dca913cb890777, type: 3}
   Avoid: {fileID: 8105662350854249346, guid: 7ae3a7cb2a0fd8e429f3f3623ffd6350, type: 3}
   Attract: {fileID: 5366102288078915630, guid: 2eba76a44cace064fadc6bb7992e6bd2, type: 3}
+  AvoidsAmmount: 4
+  BoidsAmmount: 4
+  AttractAmmount: 1
+  level1: {fileID: 854688936197648919, guid: 7d5819a22e6ae07499ecf8c25e101b38, type: 3}
+  Undo: 0
