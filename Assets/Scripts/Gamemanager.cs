@@ -177,6 +177,7 @@ public class Gamemanager : MonoBehaviour
     }
     public void resetLevel()
     {
+        resetSimulation();
         level levelScript = FindObjectOfType<level>();
         if (levelScript != null)
         {

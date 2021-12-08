@@ -48,7 +48,7 @@ MonoBehaviour:
   AlignmentWeight: 1
   SeparationWeight: 1
   FollowWeight: 1
-  AvoidanceWeight: 2
+  AvoidanceWeight: 0.6
   PreviousSpeedWeight: 0.8
   maxSpeed: 15
   minSpeed: 12.5
