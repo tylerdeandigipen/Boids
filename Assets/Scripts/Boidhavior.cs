@@ -62,7 +62,7 @@ public class Boidhavior : MonoBehaviour
         else
             frames++;
 
-    }
+    }   
 
     public void UnfreezeBoids()
     {

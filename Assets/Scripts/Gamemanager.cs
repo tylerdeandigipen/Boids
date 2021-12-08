@@ -7,6 +7,7 @@ public class Gamemanager : MonoBehaviour
 {
     public GameObject Canvas;
     public GameObject MainMenu;
+    public int currentLevel = 1;
     Boidhavior BoidLeader;
     public GameObject Boid;
     public GameObject Avoid;
@@ -20,9 +21,16 @@ public class Gamemanager : MonoBehaviour
     public int AvoidsAmmount;
     public int BoidsAmmount;
     public int AttractAmmount;
-    public GameObject level1;
     public bool Undo = false;
-    List<GameObject> obj = new List<GameObject>(); 
+    List<GameObject> obj = new List<GameObject>();
+    public GameObject ButtonUI;
+    bool canPlace = true;
+    public GameObject level1;
+    public GameObject level2;
+    public GameObject level3;
+    public GameObject level4;
+    public GameObject level5;
+    bool isSandBox = false;
     
     // Start is called before the first frame update
     void Start()
@@ -30,8 +38,10 @@ public class Gamemanager : MonoBehaviour
         CurrentLevel = level1;
         Canvas.SetActive(true);
         CurrentSpawnable = Boid;
+        CurrentSpawnableID = 9999;
         BoidLeader = FindObjectOfType<Boidhavior>();
         MainMenu.SetActive(true);
+        ButtonUI.SetActive(false);
         SpawnCountGiven[0] = BoidsAmmount;
         SpawnCountGiven[1] = AvoidsAmmount;
         SpawnCountGiven[2] = AttractAmmount;
@@ -44,8 +54,7 @@ public class Gamemanager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ProcessInputs();
-        
+        ProcessInputs();        
     }
     public void SetSpawnBoids(string useless)
     {
@@ -64,9 +73,13 @@ public class Gamemanager : MonoBehaviour
     }
     void ProcessInputs()
     {
-        if (Input.GetKeyUp(KeyCode.Mouse0))
+        if (isSandBox == true)
+        {            
+            canPlace = true;
+        }
+        if (Input.GetKeyUp(KeyCode.Mouse0) && canPlace == true)
         {
-            if (canSpawn == true && SpawnCount[CurrentSpawnableID] < SpawnCountGiven[CurrentSpawnableID])
+            if (canSpawn == true && CurrentSpawnableID != 9999 &&SpawnCount[CurrentSpawnableID] < SpawnCountGiven[CurrentSpawnableID])
             {
                 Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 float mouseX = worldPosition.x;
@@ -80,8 +93,7 @@ public class Gamemanager : MonoBehaviour
                     }                    
                 }
                 else
-                {
-                    Instantiate(CurrentSpawnable, new Vector3(mouseX, mouseY, 0), new Quaternion());
+                {                    
                     GameObject tempObj = Instantiate(CurrentSpawnable, new Vector3(mouseX, mouseY, 0), new Quaternion());
                     obj.Add(tempObj);
                     SpawnCount[CurrentSpawnableID] += 1;
@@ -90,7 +102,7 @@ public class Gamemanager : MonoBehaviour
             else
                 canSpawn = true;
         }
-        if (Input.GetKeyUp(KeyCode.Mouse1))
+        if (Input.GetKeyUp(KeyCode.Mouse1) && canPlace == true)
         {
             Undo = true;
         }
@@ -101,9 +113,10 @@ public class Gamemanager : MonoBehaviour
             {
                 if (i == obj.Count && obj.Count != 0)
                 {
-                    Debug.Log("bang");
-                    Destroy(obj[i - 1]);
+                    GameObject temp = obj[i - 1];
                     obj.RemoveAt(i - 1);
+                    Destroy(temp);
+                    SpawnCount[CurrentSpawnableID] -= 1;
                 }
             }
             Undo = false;
@@ -119,6 +132,7 @@ public class Gamemanager : MonoBehaviour
     }
     public void resetSimulation()
     {
+        CheckLevelID(currentLevel);
         Boid[] objects;
         Avoid[] objectsToAvoid;
         objects = FindObjectsOfType<Boid>();
@@ -145,6 +159,16 @@ public class Gamemanager : MonoBehaviour
         {
             SpawnCount[i] = 0;
         }
+        canPlace = true;
+    }
+    public void hideUI()
+    {
+        if (ButtonUI.activeSelf == true)
+        {
+            ButtonUI.SetActive(false);
+        }
+        else
+            ButtonUI.SetActive(true);
     }
     public void stopSpawns()
     {
@@ -158,11 +182,20 @@ public class Gamemanager : MonoBehaviour
     public void pauseSim()
     { 
     
+    }    
+    public void hideMenu()
+    {
+        if (MainMenu.activeSelf == true)
+        {
+            MainMenu.SetActive(false);
+        }
+        else
+            MainMenu.SetActive(true);
     }
     public void startSim()
     {
         BoidLeader.UnfreezeBoids();
-        MainMenu.SetActive(false);
+        canPlace = false;
     }
 
     public void restartLevel()
@@ -173,7 +206,23 @@ public class Gamemanager : MonoBehaviour
             Destroy(levelScript.gameObject);
         }
         BoidLeader.FreezeBoids();
-        Instantiate(CurrentLevel);
+        if (isSandBox != true)
+        {
+            Instantiate(CurrentLevel);
+        }
+        canPlace = true;
+    }
+    public void startSandbox()
+    {
+        isSandBox = true;
+        SpawnCountGiven[0] = 9999;
+        SpawnCountGiven[1] = 9999;
+        SpawnCountGiven[2] = 9999;
+
+    }
+    public void startCampaign()
+    {
+        isSandBox = false;
     }
     public void resetLevel()
     {
@@ -184,8 +233,40 @@ public class Gamemanager : MonoBehaviour
             Destroy(levelScript.gameObject);
         }        
         BoidLeader.FreezeBoids();
-        Instantiate(CurrentLevel);
+        if (isSandBox != true)
+        {
+            Instantiate(CurrentLevel);
+        }
+        canPlace = true;
+    }
+    void CheckLevelID(int id)
+    {
+        switch (id)
+        {
+            case 1:
+                if (level1 != null)
+                    CurrentLevel = level1;
+                break;
+            case 2:
+                if(level2 != null)
+                    CurrentLevel = level2;
+                break;
+            case 3:
+                if (level3 != null)
+                    CurrentLevel = level3;
+                break;
+            case 4:
+                if (level4 != null)
+                    CurrentLevel = level4;
+                break;
+            case 5:
+                if (level5 != null)
+                    CurrentLevel = level5;
+                break;
+
+        }
     }
 }
+
 
 
