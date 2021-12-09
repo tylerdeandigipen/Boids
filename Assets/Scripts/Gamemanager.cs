@@ -24,6 +24,8 @@ public class Gamemanager : MonoBehaviour
     public bool Undo = false;
     List<GameObject> obj = new List<GameObject>();
     public GameObject ButtonUI;
+    public GameObject ButtonUICampaign;
+    public GameObject LevelSelect;
     bool canPlace = true;
     public GameObject level1;
     public GameObject level2;
@@ -42,6 +44,8 @@ public class Gamemanager : MonoBehaviour
         BoidLeader = FindObjectOfType<Boidhavior>();
         MainMenu.SetActive(true);
         ButtonUI.SetActive(false);
+        LevelSelect.SetActive(false);
+        ButtonUICampaign.SetActive(false);
         SpawnCountGiven[0] = BoidsAmmount;
         SpawnCountGiven[1] = AvoidsAmmount;
         SpawnCountGiven[2] = AttractAmmount;
@@ -89,8 +93,9 @@ public class Gamemanager : MonoBehaviour
                     Movement AttractAble = FindObjectOfType<Movement>();
                     if (AttractAble != null)
                     {
-                        Destroy(AttractAble.gameObject);
-                    }                    
+                        Destroy(AttractAble.gameObject);                      
+                    }
+                    GameObject tempObj = Instantiate(CurrentSpawnable, new Vector3(mouseX, mouseY, 0), new Quaternion());
                 }
                 else
                 {                    
@@ -161,14 +166,36 @@ public class Gamemanager : MonoBehaviour
         }
         canPlace = true;
     }
-    public void hideUI()
+    public void hideUI(int id)
     {
-        if (ButtonUI.activeSelf == true)
+        switch (id)
         {
-            ButtonUI.SetActive(false);
-        }
-        else
-            ButtonUI.SetActive(true);
+            case 1:
+                if (ButtonUI.activeSelf == true)
+                {
+                    ButtonUI.SetActive(false);
+                }
+                else
+                    ButtonUI.SetActive(true);
+                break;
+            case 2:
+                if (ButtonUICampaign.activeSelf == true)
+                {
+                    ButtonUICampaign.SetActive(false);
+                }
+                else
+                    ButtonUICampaign.SetActive(true);
+                break;
+            case 3:
+                if (LevelSelect.activeSelf == true)
+                {
+                    LevelSelect.SetActive(false);
+                }
+                else
+                    LevelSelect.SetActive(true);
+                break;
+
+        }     
     }
     public void stopSpawns()
     {
@@ -239,8 +266,10 @@ public class Gamemanager : MonoBehaviour
         }
         canPlace = true;
     }
-    void CheckLevelID(int id)
+
+    public void CheckLevelID(int id)
     {
+        currentLevel = id;
         switch (id)
         {
             case 1:
