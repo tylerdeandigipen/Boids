@@ -80,11 +80,13 @@ MonoBehaviour:
   Attract: {fileID: 5366102288078915630, guid: 2eba76a44cace064fadc6bb7992e6bd2, type: 3}
   AvoidsAmmount: 4
   BoidsAmmount: 4
-  AttractAmmount: 1
+  AttractAmmount: 9999
   Undo: 0
   ButtonUI: {fileID: 0}
+  ButtonUICampaign: {fileID: 0}
+  LevelSelect: {fileID: 0}
   level1: {fileID: 854688936197648919, guid: 7d5819a22e6ae07499ecf8c25e101b38, type: 3}
   level2: {fileID: 6596138735718056463, guid: be425d73f5d889148bab7067cce9f451, type: 3}
-  level3: {fileID: 0}
+  level3: {fileID: 4039170623813213942, guid: ad71d2d8af85e7c42a111439bc668c9e, type: 3}
   level4: {fileID: 0}
   level5: {fileID: 0}

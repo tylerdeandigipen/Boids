@@ -61,6 +61,11 @@ public class Boidhavior : MonoBehaviour
         }
         else
             frames++;
+        if (isFrozen == true)
+        {
+            AmmountOfBoids = 1;
+        }
+
 
     }   
 

@@ -17,7 +17,7 @@ public class Gamemanager : MonoBehaviour
     int[] SpawnCount = new int[3];
     int[] SpawnCountGiven = new int[3];
     GameObject CurrentLevel;
-    bool canSpawn = true;
+    public bool canSpawn = true;
     public int AvoidsAmmount;
     public int BoidsAmmount;
     public int AttractAmmount;
@@ -32,7 +32,12 @@ public class Gamemanager : MonoBehaviour
     public GameObject level3;
     public GameObject level4;
     public GameObject level5;
+    public GameObject level6;
+    public GameObject level7;
+    public GameObject level8;
     bool isSandBox = false;
+    public bool allowPlaceAfterManualreset = false;
+    bool canSpam = false;
     
     // Start is called before the first frame update
     void Start()
@@ -127,12 +132,17 @@ public class Gamemanager : MonoBehaviour
             Undo = false;
         }
   
-        if (Input.mouseScrollDelta != new Vector2(0, 0))
+        if (Input.mouseScrollDelta != new Vector2(0, 0) && canSpam == true)
         {
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             float mouseX = worldPosition.x;
             float mouseY = worldPosition.y;
             Instantiate(Boid, new Vector3(mouseX, mouseY, 0), new Quaternion());
+        }
+        if (allowPlaceAfterManualreset == true)
+        {
+            canSpawn = true;
+            allowPlaceAfterManualreset = false;
         }
     }
     public void resetSimulation()
@@ -206,9 +216,9 @@ public class Gamemanager : MonoBehaviour
         canSpawn = true;
     }
 
-    public void pauseSim()
-    { 
-    
+    public void undo()
+    {
+        Undo = true;
     }    
     public void hideMenu()
     {
@@ -252,7 +262,7 @@ public class Gamemanager : MonoBehaviour
         isSandBox = false;
     }
     public void resetLevel()
-    {
+    {        
         resetSimulation();
         level levelScript = FindObjectOfType<level>();
         if (levelScript != null)
@@ -265,6 +275,7 @@ public class Gamemanager : MonoBehaviour
             Instantiate(CurrentLevel);
         }
         canPlace = true;
+        
     }
 
     public void CheckLevelID(int id)
@@ -274,23 +285,68 @@ public class Gamemanager : MonoBehaviour
         {
             case 1:
                 if (level1 != null)
+                {
                     CurrentLevel = level1;
+                    level levelscript = level1.GetComponent<level>();
+                    SpawnCountGiven[1] = levelscript.avoidsAmmount;
+                }
                 break;
             case 2:
                 if(level2 != null)
+                { 
                     CurrentLevel = level2;
+                    level levelscript = level1.GetComponent<level>();
+                    SpawnCountGiven[1] = levelscript.avoidsAmmount;
+                }
+
                 break;
             case 3:
                 if (level3 != null)
+                { 
                     CurrentLevel = level3;
+                    level levelscript = level1.GetComponent<level>();
+                    SpawnCountGiven[1] = levelscript.avoidsAmmount;
+                }
                 break;
             case 4:
                 if (level4 != null)
+                { 
                     CurrentLevel = level4;
+                    level levelscript = level1.GetComponent<level>();
+                    SpawnCountGiven[1] = levelscript.avoidsAmmount;
+                }
                 break;
             case 5:
                 if (level5 != null)
+                { 
                     CurrentLevel = level5;
+                    level levelscript = level1.GetComponent<level>();
+                    SpawnCountGiven[1] = levelscript.avoidsAmmount;
+                }
+                break;
+            case 6:
+                if (level6 != null)
+                {
+                    CurrentLevel = level6;
+                    level levelscript = level1.GetComponent<level>();
+                    SpawnCountGiven[1] = levelscript.avoidsAmmount;
+                }
+                break;
+            case 7:
+                if (level7 != null)
+                {
+                    CurrentLevel = level7;
+                    level levelscript = level1.GetComponent<level>();
+                    SpawnCountGiven[1] = levelscript.avoidsAmmount;
+                }
+                break;
+            case 8:
+                if (level8 != null)
+                {
+                    CurrentLevel = level8;
+                    level levelscript = level1.GetComponent<level>();
+                    SpawnCountGiven[1] = levelscript.avoidsAmmount;
+                }
                 break;
 
         }
