@@ -38,6 +38,7 @@ public class Gamemanager : MonoBehaviour
     bool isSandBox = false;
     public bool allowPlaceAfterManualreset = false;
     bool canSpam = false;
+    level levelscript;
     
     // Start is called before the first frame update
     void Start()
@@ -52,8 +53,8 @@ public class Gamemanager : MonoBehaviour
         LevelSelect.SetActive(false);
         ButtonUICampaign.SetActive(false);
         SpawnCountGiven[0] = BoidsAmmount;
-        SpawnCountGiven[1] = AvoidsAmmount;
-        SpawnCountGiven[2] = AttractAmmount;
+        SpawnCountGiven[1] = AvoidsAmmount + 1;
+        SpawnCountGiven[2] = AttractAmmount;              
         for (int i = 0; i < 3; i++)
         {
             SpawnCount[i] = 0;
@@ -88,7 +89,9 @@ public class Gamemanager : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.Mouse0) && canPlace == true)
         {
-            if (canSpawn == true && CurrentSpawnableID != 9999 &&SpawnCount[CurrentSpawnableID] < SpawnCountGiven[CurrentSpawnableID])
+            //if(levelscript != null && CurrentSpawnableID != 9999)
+              //  SpawnCountGiven[CurrentSpawnableID] = levelscript.avoidsAmmount;
+            if (canSpawn == true && CurrentSpawnableID != 9999 && SpawnCount[CurrentSpawnableID] < SpawnCountGiven[CurrentSpawnableID])
             {
                 Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 float mouseX = worldPosition.x;
@@ -112,12 +115,8 @@ public class Gamemanager : MonoBehaviour
             else
                 canSpawn = true;
         }
-        if (Input.GetKeyUp(KeyCode.Mouse1) && canPlace == true)
-        {
-            Undo = true;
-        }
 
-        if (Undo == true)
+        if (Undo == true && BoidLeader.isFrozen == true)
         {
             for (int i = 0; i <= obj.Count; i++)
             {
@@ -131,6 +130,8 @@ public class Gamemanager : MonoBehaviour
             }
             Undo = false;
         }
+        else
+            Undo = false;
   
         if (Input.mouseScrollDelta != new Vector2(0, 0) && canSpam == true)
         {
@@ -235,6 +236,16 @@ public class Gamemanager : MonoBehaviour
         canPlace = false;
     }
 
+    public void startStop()
+    {
+        if (BoidLeader.isFrozen == true)
+        {
+            startSim();
+        }
+        else
+            restartLevel();
+    }
+
     public void restartLevel()
     {
         level levelScript = FindObjectOfType<level>();
@@ -295,7 +306,7 @@ public class Gamemanager : MonoBehaviour
                 if(level2 != null)
                 { 
                     CurrentLevel = level2;
-                    level levelscript = level1.GetComponent<level>();
+                    level levelscript = level2.GetComponent<level>();
                     SpawnCountGiven[1] = levelscript.avoidsAmmount;
                 }
 
@@ -304,7 +315,7 @@ public class Gamemanager : MonoBehaviour
                 if (level3 != null)
                 { 
                     CurrentLevel = level3;
-                    level levelscript = level1.GetComponent<level>();
+                    level levelscript = level3.GetComponent<level>();
                     SpawnCountGiven[1] = levelscript.avoidsAmmount;
                 }
                 break;
@@ -312,7 +323,7 @@ public class Gamemanager : MonoBehaviour
                 if (level4 != null)
                 { 
                     CurrentLevel = level4;
-                    level levelscript = level1.GetComponent<level>();
+                    level levelscript = level4.GetComponent<level>();
                     SpawnCountGiven[1] = levelscript.avoidsAmmount;
                 }
                 break;
@@ -320,7 +331,7 @@ public class Gamemanager : MonoBehaviour
                 if (level5 != null)
                 { 
                     CurrentLevel = level5;
-                    level levelscript = level1.GetComponent<level>();
+                    level levelscript = level5.GetComponent<level>();
                     SpawnCountGiven[1] = levelscript.avoidsAmmount;
                 }
                 break;
@@ -328,7 +339,7 @@ public class Gamemanager : MonoBehaviour
                 if (level6 != null)
                 {
                     CurrentLevel = level6;
-                    level levelscript = level1.GetComponent<level>();
+                    level levelscript = level6.GetComponent<level>();
                     SpawnCountGiven[1] = levelscript.avoidsAmmount;
                 }
                 break;
@@ -336,7 +347,7 @@ public class Gamemanager : MonoBehaviour
                 if (level7 != null)
                 {
                     CurrentLevel = level7;
-                    level levelscript = level1.GetComponent<level>();
+                    level levelscript = level7.GetComponent<level>();
                     SpawnCountGiven[1] = levelscript.avoidsAmmount;
                 }
                 break;
@@ -344,7 +355,7 @@ public class Gamemanager : MonoBehaviour
                 if (level8 != null)
                 {
                     CurrentLevel = level8;
-                    level levelscript = level1.GetComponent<level>();
+                    level levelscript = level8.GetComponent<level>();
                     SpawnCountGiven[1] = levelscript.avoidsAmmount;
                 }
                 break;
