@@ -78,6 +78,7 @@ MonoBehaviour:
   Boid: {fileID: 6552284299318456380, guid: e191e27410047a4458dca913cb890777, type: 3}
   Avoid: {fileID: 8105662350854249346, guid: 7ae3a7cb2a0fd8e429f3f3623ffd6350, type: 3}
   Attract: {fileID: 5366102288078915630, guid: 2eba76a44cace064fadc6bb7992e6bd2, type: 3}
+  canSpawn: 1
   AvoidsAmmount: 4
   BoidsAmmount: 4
   AttractAmmount: 9999
@@ -88,5 +89,9 @@ MonoBehaviour:
   level1: {fileID: 854688936197648919, guid: 7d5819a22e6ae07499ecf8c25e101b38, type: 3}
   level2: {fileID: 6596138735718056463, guid: be425d73f5d889148bab7067cce9f451, type: 3}
   level3: {fileID: 4039170623813213942, guid: ad71d2d8af85e7c42a111439bc668c9e, type: 3}
-  level4: {fileID: 0}
-  level5: {fileID: 0}
+  level4: {fileID: 1852603916438307581, guid: 1b235404209ca994f83e8428fba7ece3, type: 3}
+  level5: {fileID: 3116701293891447313, guid: 43a04e4a10779b54382e30b763328191, type: 3}
+  level6: {fileID: 7307820907474619472, guid: 95f0eb83ddd48dd4d86d44577d49fbcc, type: 3}
+  level7: {fileID: 304441808204972268, guid: c279b796befb5874b984656cb7922954, type: 3}
+  level8: {fileID: 6380077377990134414, guid: 6912fc962d0776c4d915ebfe99e2a7ab, type: 3}
+  allowPlaceAfterManualreset: 0
