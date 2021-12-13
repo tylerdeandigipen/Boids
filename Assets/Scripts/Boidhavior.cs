@@ -23,6 +23,7 @@ public class Boidhavior : MonoBehaviour
     public bool isFrozen = true;
     int frames = 1;
     public int AmmountOfBoids;
+    public int totalBoids;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +39,8 @@ public class Boidhavior : MonoBehaviour
             objects = FindObjectsOfType<Boid>();
             objectsToAvoid = FindObjectsOfType<Avoid>();
             AmmountOfBoids = objects.Length;
+            if (objects.Length > totalBoids)
+                totalBoids = objects.Length;
             if (FollowObject == null)
             {
                 Movement FollowObjectScript = FindObjectOfType<Movement>();

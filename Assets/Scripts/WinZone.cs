@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class WinZone : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class WinZone : MonoBehaviour
     Gamemanager gm;
     Boidhavior bl;
     bool won = false;
+    public TextMeshProUGUI BoidsText;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,14 +33,19 @@ public class WinZone : MonoBehaviour
             gm.allowPlaceAfterManualreset = true;
             gm.restartLevel();
         }
+        if (BoidsText != null)
+        {
+            if ((BoidsToWin - count) > 0)
+                BoidsText.text = (BoidsToWin - count).ToString();
+            else
+                BoidsText.text = "0";
+        }
     }
 
     void Win()
     {
-        gm.currentLevel += 1;
-        gm.CheckLevelID(gm.currentLevel);
-        gm.allowPlaceAfterManualreset = true;
-        gm.resetLevel();
+        gm.displayResults(count);
+        gm.hideUI(4);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

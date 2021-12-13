@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 9008803618843999925}
   - component: {fileID: 9008803618843999926}
   m_Layer: 0
-  m_Name: Square
+  m_Name: WinZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -182,6 +182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BoidsToWin: 4
   count: 0
+  BoidsText: {fileID: 0}
 --- !u!1001 &4240390156249781615
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Gamemanager : MonoBehaviour
 {
@@ -26,6 +27,11 @@ public class Gamemanager : MonoBehaviour
     public GameObject ButtonUI;
     public GameObject ButtonUICampaign;
     public GameObject LevelSelect;
+    public GameObject LevelComplete;
+    public TextMeshProUGUI BoidsLeft;
+    public TextMeshProUGUI FactBox;
+    int totalPossibleBoids;
+    public TextMeshProUGUI AvoidsUsed;
     bool canPlace = true;
     public GameObject level1;
     public GameObject level2;
@@ -35,6 +41,14 @@ public class Gamemanager : MonoBehaviour
     public GameObject level6;
     public GameObject level7;
     public GameObject level8;
+    public GameObject level9;
+    public GameObject level10;
+    public GameObject level11;
+    public GameObject level12;
+    public GameObject level13;
+    public GameObject level14;
+    public GameObject level15;
+    public GameObject level16;
     bool isSandBox = false;
     public bool allowPlaceAfterManualreset = false;
     bool canSpam = false;
@@ -52,6 +66,7 @@ public class Gamemanager : MonoBehaviour
         ButtonUI.SetActive(false);
         LevelSelect.SetActive(false);
         ButtonUICampaign.SetActive(false);
+        LevelComplete.SetActive(false);
         SpawnCountGiven[0] = BoidsAmmount;
         SpawnCountGiven[1] = AvoidsAmmount + 1;
         SpawnCountGiven[2] = AttractAmmount;              
@@ -205,6 +220,17 @@ public class Gamemanager : MonoBehaviour
                 else
                     LevelSelect.SetActive(true);
                 break;
+            case 4:
+                if (LevelComplete.activeSelf == true)
+                {
+                    LevelComplete.SetActive(false);
+                    
+                }
+                else
+                    LevelComplete.SetActive(true);
+                    FactRandomizer factscript = this.GetComponent<FactRandomizer>();
+                    factscript.FactRandomize(FactBox);
+                break;
 
         }     
     }
@@ -233,7 +259,7 @@ public class Gamemanager : MonoBehaviour
     public void startSim()
     {
         BoidLeader.UnfreezeBoids();
-        canPlace = false;
+        canPlace = false;        
     }
 
     public void startStop()
@@ -288,11 +314,42 @@ public class Gamemanager : MonoBehaviour
         canPlace = true;
         
     }
+    public void reloadMenu()
+    {
+        resetSimulation();
+        level levelScript = FindObjectOfType<level>();
+        if (levelScript != null)
+        {
+            Destroy(levelScript.gameObject);
+        }
+        BoidLeader.FreezeBoids();
+        ButtonUI.SetActive(false);
+        ButtonUICampaign.SetActive(false);
+        LevelSelect.SetActive(false);
+        LevelComplete.SetActive(false);
+        MainMenu.SetActive(true);
+        CurrentSpawnableID = 9999;
+    }
+
+    public void displayResults(int count)
+    {
+        totalPossibleBoids = BoidLeader.GetComponent<Boidhavior>().totalBoids;
+        Avoid[] objectsToAvoid;
+        objectsToAvoid = FindObjectsOfType<Avoid>();
+        int avoidscount = objectsToAvoid.Length;
+        BoidsLeft.text = count.ToString() + "/" + totalPossibleBoids.ToString();
+        AvoidsUsed.text = avoidscount.ToString();
+    }
 
     public void CheckLevelID(int id)
     {
-        currentLevel = id;
-        switch (id)
+        if (id == 9999)
+        {
+            currentLevel += 1;
+        }
+        else
+            currentLevel = id;
+        switch (currentLevel)
         {
             case 1:
                 if (level1 != null)
@@ -360,7 +417,7 @@ public class Gamemanager : MonoBehaviour
                 }
                 break;
 
-        }
+        }        
     }
 }
 
