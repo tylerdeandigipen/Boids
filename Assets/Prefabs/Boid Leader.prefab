@@ -60,6 +60,7 @@ MonoBehaviour:
   FollowObject: {fileID: 0}
   isFrozen: 1
   AmmountOfBoids: 0
+  totalBoids: 0
 --- !u!114 &5067547828960672331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86,6 +87,10 @@ MonoBehaviour:
   ButtonUI: {fileID: 0}
   ButtonUICampaign: {fileID: 0}
   LevelSelect: {fileID: 0}
+  LevelComplete: {fileID: 0}
+  BoidsLeft: {fileID: 0}
+  FactBox: {fileID: 0}
+  AvoidsUsed: {fileID: 0}
   level1: {fileID: 854688936197648919, guid: 7d5819a22e6ae07499ecf8c25e101b38, type: 3}
   level2: {fileID: 6596138735718056463, guid: be425d73f5d889148bab7067cce9f451, type: 3}
   level3: {fileID: 4039170623813213942, guid: ad71d2d8af85e7c42a111439bc668c9e, type: 3}
@@ -94,4 +99,12 @@ MonoBehaviour:
   level6: {fileID: 7307820907474619472, guid: 95f0eb83ddd48dd4d86d44577d49fbcc, type: 3}
   level7: {fileID: 304441808204972268, guid: c279b796befb5874b984656cb7922954, type: 3}
   level8: {fileID: 6380077377990134414, guid: 6912fc962d0776c4d915ebfe99e2a7ab, type: 3}
+  level9: {fileID: 6296437940893529504, guid: 55ede46e814d327469ccfccb903c5884, type: 3}
+  level10: {fileID: 0}
+  level11: {fileID: 0}
+  level12: {fileID: 0}
+  level13: {fileID: 0}
+  level14: {fileID: 0}
+  level15: {fileID: 0}
+  level16: {fileID: 0}
   allowPlaceAfterManualreset: 0

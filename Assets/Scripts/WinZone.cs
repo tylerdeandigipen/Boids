@@ -7,6 +7,7 @@ public class WinZone : MonoBehaviour
 {
     public int BoidsToWin;
     public int count = 0;
+    public bool ToCombine = false;
     GameObject BoidLeader;
     Gamemanager gm;
     Boidhavior bl;
@@ -44,8 +45,11 @@ public class WinZone : MonoBehaviour
 
     void Win()
     {
-        gm.displayResults(count);
-        gm.hideUI(4);
+        if (ToCombine == false)
+        {
+            gm.displayResults(count);
+            gm.hideUI(4);
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
