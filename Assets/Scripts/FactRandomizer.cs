@@ -5,7 +5,7 @@ using TMPro;
 
 public class FactRandomizer : MonoBehaviour
 {
-    string[] facts = new string[118];
+    string[] facts = new string[119];
     // Start is called before the first frame update
     void Start()
     {
@@ -55,7 +55,7 @@ public class FactRandomizer : MonoBehaviour
         facts[44] = "Download Boid Box, free today only!";
         facts[45] = "Birds cause memory loss if they hit you hard enough";
         facts[46] = "Bird know the truth about Mark Zuckerburg";
-        facts[47] = "Bird poop is made up of 76.89% acid";
+        facts[47] = "Birds consume food using 78.67% pure hydrochloric acid!";
         facts[48] = "Birds can operate heavy machinery if you look away for long enough";
         facts[49] = "In world war II, Birds were used to operate tanks. We had to cover it up though. Sorry.";
         facts[50] = "Birds can type on computers. For example: A WIwadwdAVgeaBFI";
