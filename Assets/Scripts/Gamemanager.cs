@@ -289,6 +289,7 @@ public class Gamemanager : MonoBehaviour
         {
             Instantiate(CurrentLevel);
         }
+        BoidLeader.totalBoids = 0;
         canPlace = true;
     }
     public void startSandbox()
