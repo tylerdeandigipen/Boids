@@ -98,6 +98,11 @@ public class Gamemanager : MonoBehaviour
     }
     void ProcessInputs()
     {
+        if (Input.GetKeyUp(KeyCode.Mouse1) && canPlace == true)
+        {
+            FactRandomizer factscript = this.GetComponent<FactRandomizer>();
+            factscript.FactRandomize(FactBox);
+        }
         if (isSandBox == true)
         {            
             canPlace = true;
