@@ -137,7 +137,14 @@ public class FactRandomizer : MonoBehaviour
 
     public void FactRandomize(TextMeshProUGUI factbar)
     {
-        int i = Random.Range(0,facts.Length);
-        factbar.text = facts[i];
+        while(true)
+        {
+            int i = Random.Range(0, facts.Length);
+            if (facts[i] != null)
+            {
+                factbar.text = facts[i];
+                return;
+            }
+        }
     }
 }
