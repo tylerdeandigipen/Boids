@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class Gamemanager : MonoBehaviour
 {
@@ -29,7 +30,7 @@ public class Gamemanager : MonoBehaviour
     public GameObject LevelSelect;
     public GameObject LevelComplete;
     public TextMeshProUGUI BoidsLeft;
-    public TextMeshProUGUI FactBox;
+    public TextMeshProUGUI FactBox;  
     int totalPossibleBoids;
     public TextMeshProUGUI AvoidsUsed;
     bool canPlace = true;
@@ -79,8 +80,10 @@ public class Gamemanager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ProcessInputs();        
+        ProcessInputs();
+       
     }
+
     public void SetSpawnBoids(string useless)
     {
         CurrentSpawnable = Boid;
@@ -483,8 +486,16 @@ public class Gamemanager : MonoBehaviour
                 {
                     CurrentLevel = level16;
                     level levelscript = level16.GetComponent<level>();
-                    SpawnCountGiven[1] = levelscript.avoidsAmmount;
+                    SpawnCountGiven[1] = levelscript.avoidsAmmount;                    
                 }
+                break;
+            case 17:
+                if (level16 != null)
+                {
+                    CurrentLevel = level16;
+                    level levelscript = level16.GetComponent<level>();
+                    SpawnCountGiven[1] = levelscript.avoidsAmmount;                    
+                }                
                 break;
         }        
     }

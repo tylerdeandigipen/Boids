@@ -81,7 +81,7 @@ MonoBehaviour:
   Attract: {fileID: 5366102288078915630, guid: 2eba76a44cace064fadc6bb7992e6bd2, type: 3}
   canSpawn: 1
   AvoidsAmmount: 4
-  BoidsAmmount: 4
+  BoidsAmmount: 10
   AttractAmmount: 9999
   Undo: 0
   ButtonUI: {fileID: 0}
@@ -91,20 +91,20 @@ MonoBehaviour:
   BoidsLeft: {fileID: 0}
   FactBox: {fileID: 0}
   AvoidsUsed: {fileID: 0}
-  level1: {fileID: 854688936197648919, guid: 7d5819a22e6ae07499ecf8c25e101b38, type: 3}
+  level1: {fileID: 1209898390579727549, guid: 7d5819a22e6ae07499ecf8c25e101b38, type: 3}
   level2: {fileID: 6596138735718056463, guid: be425d73f5d889148bab7067cce9f451, type: 3}
-  level3: {fileID: 4039170623813213942, guid: ad71d2d8af85e7c42a111439bc668c9e, type: 3}
-  level4: {fileID: 1852603916438307581, guid: 1b235404209ca994f83e8428fba7ece3, type: 3}
-  level5: {fileID: 3116701293891447313, guid: 43a04e4a10779b54382e30b763328191, type: 3}
-  level6: {fileID: 7307820907474619472, guid: 95f0eb83ddd48dd4d86d44577d49fbcc, type: 3}
-  level7: {fileID: 304441808204972268, guid: c279b796befb5874b984656cb7922954, type: 3}
-  level8: {fileID: 6380077377990134414, guid: 6912fc962d0776c4d915ebfe99e2a7ab, type: 3}
-  level9: {fileID: 6296437940893529504, guid: 55ede46e814d327469ccfccb903c5884, type: 3}
-  level10: {fileID: 0}
-  level11: {fileID: 0}
-  level12: {fileID: 0}
-  level13: {fileID: 0}
-  level14: {fileID: 0}
-  level15: {fileID: 0}
-  level16: {fileID: 0}
+  level3: {fileID: 2574606430633312333, guid: ad71d2d8af85e7c42a111439bc668c9e, type: 3}
+  level4: {fileID: 2550514021468084603, guid: 1b235404209ca994f83e8428fba7ece3, type: 3}
+  level5: {fileID: 8077634736891886700, guid: 43a04e4a10779b54382e30b763328191, type: 3}
+  level6: {fileID: 6956444100526551682, guid: 95f0eb83ddd48dd4d86d44577d49fbcc, type: 3}
+  level7: {fileID: 6090970745057084696, guid: c279b796befb5874b984656cb7922954, type: 3}
+  level8: {fileID: 4057041096663120800, guid: 6912fc962d0776c4d915ebfe99e2a7ab, type: 3}
+  level9: {fileID: 7200451643823310573, guid: 55ede46e814d327469ccfccb903c5884, type: 3}
+  level10: {fileID: 8373360116872185732, guid: eb6685976fd66ae43ba82fe95873acb4, type: 3}
+  level11: {fileID: 1913997216442077132, guid: 88cb49504c5e35b488e1262e64105147, type: 3}
+  level12: {fileID: 6680702537585490924, guid: 953433b699cee6841a356d567e07c0c8, type: 3}
+  level13: {fileID: 3677804625168333133, guid: 186b6b5911e18584480ed5f12a795e68, type: 3}
+  level14: {fileID: 6251281908195070512, guid: af2fd0e3d0616e34c921584186128692, type: 3}
+  level15: {fileID: 8423591300064756050, guid: 3231e40dcd0f5fd47a75ed1f5e052d97, type: 3}
+  level16: {fileID: 5462019635729042081, guid: b67181615c22fe447ab7b5d4b88e2169, type: 3}
   allowPlaceAfterManualreset: 0
