@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class Gamemanager : MonoBehaviour
 {
@@ -29,7 +30,7 @@ public class Gamemanager : MonoBehaviour
     public GameObject LevelSelect;
     public GameObject LevelComplete;
     public TextMeshProUGUI BoidsLeft;
-    public TextMeshProUGUI FactBox;
+    public TextMeshProUGUI FactBox;  
     int totalPossibleBoids;
     public TextMeshProUGUI AvoidsUsed;
     bool canPlace = true;
@@ -79,8 +80,10 @@ public class Gamemanager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ProcessInputs();        
+        ProcessInputs();
+       
     }
+
     public void SetSpawnBoids(string useless)
     {
         CurrentSpawnable = Boid;
@@ -289,6 +292,7 @@ public class Gamemanager : MonoBehaviour
         {
             Instantiate(CurrentLevel);
         }
+        BoidLeader.totalBoids = 0;
         canPlace = true;
     }
     public void startSandbox()
@@ -421,7 +425,78 @@ public class Gamemanager : MonoBehaviour
                     SpawnCountGiven[1] = levelscript.avoidsAmmount;
                 }
                 break;
-
+            case 9:
+                if (level9 != null)
+                {
+                    CurrentLevel = level9;
+                    level levelscript = level9.GetComponent<level>();
+                    SpawnCountGiven[1] = levelscript.avoidsAmmount;
+                }
+                break;
+            case 10:
+                if (level10 != null)
+                {
+                    CurrentLevel = level10;
+                    level levelscript = level10.GetComponent<level>();
+                    SpawnCountGiven[1] = levelscript.avoidsAmmount;
+                }
+                break;
+            case 11:
+                if (level11 != null)
+                {
+                    CurrentLevel = level11;
+                    level levelscript = level11.GetComponent<level>();
+                    SpawnCountGiven[1] = levelscript.avoidsAmmount;
+                }
+                break;
+            case 12:
+                if (level12 != null)
+                {
+                    CurrentLevel = level12;
+                    level levelscript = level12.GetComponent<level>();
+                    SpawnCountGiven[1] = levelscript.avoidsAmmount;
+                }
+                break;
+            case 13:
+                if (level13 != null)
+                {
+                    CurrentLevel = level13;
+                    level levelscript = level13.GetComponent<level>();
+                    SpawnCountGiven[1] = levelscript.avoidsAmmount;
+                }
+                break;
+            case 14:
+                if (level14 != null)
+                {
+                    CurrentLevel = level14;
+                    level levelscript = level14.GetComponent<level>();
+                    SpawnCountGiven[1] = levelscript.avoidsAmmount;
+                }
+                break;
+            case 15:
+                if (level15 != null)
+                {
+                    CurrentLevel = level15;
+                    level levelscript = level15.GetComponent<level>();
+                    SpawnCountGiven[1] = levelscript.avoidsAmmount;
+                }
+                break;
+            case 16:
+                if (level16 != null)
+                {
+                    CurrentLevel = level16;
+                    level levelscript = level16.GetComponent<level>();
+                    SpawnCountGiven[1] = levelscript.avoidsAmmount;                    
+                }
+                break;
+            case 17:
+                if (level16 != null)
+                {
+                    CurrentLevel = level16;
+                    level levelscript = level16.GetComponent<level>();
+                    SpawnCountGiven[1] = levelscript.avoidsAmmount;                    
+                }                
+                break;
         }        
     }
 }

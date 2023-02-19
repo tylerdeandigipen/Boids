@@ -869,6 +869,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BoidsToWin: 4
   count: 0
+  ToCombine: 0
+  BoidsText: {fileID: 0}
 --- !u!1 &2710306760727744427
 GameObject:
   m_ObjectHideFlags: 0
@@ -1045,7 +1047,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3322310024493581519}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -43.707146, y: 0.13799584, z: 2.4399083}
+  m_LocalPosition: {x: -38.7, y: 0.13799584, z: 2.4399083}
   m_LocalScale: {x: 1, y: 51.9, z: 1}
   m_Children: []
   m_Father: {fileID: 479071420786481607}
@@ -1587,7 +1589,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6020616031140869878}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 45.092854, y: 0.13799584, z: 2.4399083}
+  m_LocalPosition: {x: 41.1, y: 0.13799584, z: 2.4399083}
   m_LocalScale: {x: 1, y: 51.9, z: 1}
   m_Children: []
   m_Father: {fileID: 479071420786481607}
